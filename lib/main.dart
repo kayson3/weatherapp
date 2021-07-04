@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 void main() {
@@ -39,6 +39,19 @@ class _MyHomePageState extends State<MyHomePage> {
   var currently;
   var humidity;
   var windspeed;
+
+  Future getWeather() async {
+    http.Response response = await http.get(
+        "http://api.openweathermap.org/data/2.5/weather?q=Abuja&appid=2beb83c72a7edba1158a6b1cc981f660");
+    var results = jsonDecode(response.body);
+    setState(() {
+      this.temp = results['main']['temp'];
+      this.description = results['weather'][0]['description'];
+      this.currently = results['weather'][0]['main'];
+      this.humidity = results['main']['humidity'];
+      this.windspeed = results['wind']['speed'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
