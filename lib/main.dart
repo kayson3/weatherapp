@@ -54,6 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    this.getWeather();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -76,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontWeight: FontWeight.w600,
                           fontSize: 14.0,
                         ))),
-                Text("52\u00B0",
+                Text(temp != null ? temp.toString() + "\u00B0" : "Loading",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -84,7 +90,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     )),
                 Padding(
                     padding: EdgeInsets.only(top: 10),
-                    child: Text('Rain',
+                    child: Text(
+                        currently != null ? currently.toString() : "Loading",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
@@ -101,19 +108,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 ListTile(
                     leading: FaIcon(FontAwesomeIcons.thermometerHalf),
                     title: Text("Temperature"),
-                    trailing: Text("52\u00B0")),
+                    trailing: Text(
+                        temp != null ? temp.toString() + "\u00B0" : "Loading")),
                 ListTile(
                     leading: FaIcon(FontAwesomeIcons.cloud),
                     title: Text("Weather"),
-                    trailing: Text("weather")),
+                    trailing: Text(description != null
+                        ? description.toString()
+                        : "Loading")),
                 ListTile(
                     leading: FaIcon(FontAwesomeIcons.sun),
                     title: Text("Humidity"),
-                    trailing: Text("12")),
+                    trailing: Text(
+                        humidity != null ? humidity.toString() : "Loading")),
                 ListTile(
                     leading: FaIcon(FontAwesomeIcons.wind),
-                    title: Text("WindSpeed"),
-                    trailing: Text("12"))
+                    title: Text("Wind Speed"),
+                    trailing: Text(
+                        windspeed != null ? windspeed.toString() : "Loading"))
               ],
             ),
           ))
