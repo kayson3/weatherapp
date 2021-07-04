@@ -39,10 +39,11 @@ class _MyHomePageState extends State<MyHomePage> {
   var currently;
   var humidity;
   var windspeed;
+  var url = Uri.parse(
+      "http://api.openweathermap.org/data/2.5/weather?q=Abuja&appid=2beb83c72a7edba1158a6b1cc981f660");
 
   Future getWeather() async {
-    http.Response response = await http.get(
-        "http://api.openweathermap.org/data/2.5/weather?q=Abuja&appid=2beb83c72a7edba1158a6b1cc981f660");
+    http.Response response = await http.get(url);
     var results = jsonDecode(response.body);
     setState(() {
       this.temp = results['main']['temp'];
