@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Weather App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
       home: MyHomePage(title: 'Weather App'),
     );
@@ -63,42 +63,46 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white70,
         appBar: AppBar(
           title: Text(widget.title),
         ),
         body: Column(children: [
-          Container(
-            height: MediaQuery.of(context).size.height / 3,
-            width: MediaQuery.of(context).size.width,
-            color: Colors.purple,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                    padding: EdgeInsets.only(bottom: 10),
-                    child: Text('Currently in Abuja',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14.0,
-                        ))),
-                Text(temp != null ? temp.toString() + "\u00B0" : "Loading",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    )),
-                Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: Text(
-                        currently != null ? currently.toString() : "Loading",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14.0,
-                        ))),
-              ],
+          Card(
+            elevation: 5.0,
+            child: Container(
+              height: MediaQuery.of(context).size.height / 3,
+              width: MediaQuery.of(context).size.width,
+              color: Colors.purple,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                      padding: EdgeInsets.only(bottom: 10),
+                      child: Text('Currently in Abuja',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 25.0,
+                          ))),
+                  Text(temp != null ? temp.toString() + "\u00B0" : "Loading",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      )),
+                  Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Text(
+                          currently != null ? currently.toString() : "Loading",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14.0,
+                          ))),
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -106,27 +110,41 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: EdgeInsets.all(20),
             child: ListView(
               children: [
-                ListTile(
-                    leading: FaIcon(FontAwesomeIcons.thermometerHalf),
-                    title: Text("Temperature"),
-                    trailing: Text(
-                        temp != null ? temp.toString() + "\u00B0" : "Loading")),
-                ListTile(
-                    leading: FaIcon(FontAwesomeIcons.cloud),
-                    title: Text("Weather"),
-                    trailing: Text(description != null
-                        ? description.toString()
-                        : "Loading")),
-                ListTile(
-                    leading: FaIcon(FontAwesomeIcons.sun),
-                    title: Text("Humidity"),
-                    trailing: Text(
-                        humidity != null ? humidity.toString() : "Loading")),
-                ListTile(
-                    leading: FaIcon(FontAwesomeIcons.wind),
-                    title: Text("Wind Speed"),
-                    trailing: Text(
-                        windspeed != null ? windspeed.toString() : "Loading"))
+                Card(
+                  elevation: 5,
+                  child: ListTile(
+                      leading: FaIcon(FontAwesomeIcons.thermometerHalf),
+                      title: Text("Temperature"),
+                      trailing: Text(temp != null
+                          ? temp.toString() + "\u00B0"
+                          : "Loading")),
+                ),
+                Card(
+                  elevation: 5,
+                  child: ListTile(
+                      leading: FaIcon(FontAwesomeIcons.cloud),
+                      title: Text("Weather"),
+                      trailing: Text(description != null
+                          ? description.toString()
+                          : "Loading")),
+                ),
+                Card(
+                  elevation: 5,
+                  child: ListTile(
+                      leading: FaIcon(FontAwesomeIcons.sun),
+                      title: Text("Humidity"),
+                      trailing: Text(
+                          humidity != null ? humidity.toString() : "Loading")),
+                ),
+                Card(
+                  elevation: 5,
+                  child: ListTile(
+                      leading: FaIcon(FontAwesomeIcons.wind),
+                      title: Text("Wind Speed"),
+                      trailing: Text(windspeed != null
+                          ? windspeed.toString()
+                          : "Loading")),
+                )
               ],
             ),
           ))
